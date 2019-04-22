@@ -1,0 +1,2 @@
+K-Folds with Stratification
+Leave one out
