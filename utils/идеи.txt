@@ -1,2 +1,35 @@
+Валидация:
+
 K-Folds with Stratification
 Leave one out
+
+Объяснимые Фичи:
+
+totalScanned = scannedLineItemsPerSecond*totalScanTimeInSeconds
+
+avgTimePerScan = 1/scannedLineItemsPerSecond
+
+avgValuePerScan = avgTimePerScan*valuePerSecond
+
+lineItemVoidsPerPosition = lineItemVoids/totalScanned
+
+withoutRegisPerPosition = scansWithoutRegistration/totalScanned
+
+quantityModsPerPosition = quantityModifications/totalScanned
+
+lineItemVoidsPerTotal = lineItemVoids/grandTotal
+
+withoutRegistrationPerTotal = scansWithoutRegistration/grandTotal
+
+quantiModsPerTotal = quantityModifications/grandTotal
+
+lineItemVoidsPerTime = line/ItemVoids/totalScanTimeInSeconds
+
+withoutRegistrationPerTime = scansWithoutRegistration/totalScanTimeInSeconds
+
+quantiModesPerTime = quantityModifications/totalScanTimeInSeconds
+
+Детекция выбросов с помощью:
+
+IsolationTrees
+
