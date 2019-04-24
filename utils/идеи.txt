@@ -1,35 +1,28 @@
-Валидация:
+Выводы по анализу данных:
 
-K-Folds with Stratification
-Leave one out
+/// НАНы ///
 
-Объяснимые Фичи:
+Нанов нет
 
-totalScanned = scannedLineItemsPerSecond*totalScanTimeInSeconds
+/// Сравнение распределений на train и test ///
 
-avgTimePerScan = 1/scannedLineItemsPerSecond
+Распределения не совпадают у (из за выбросов, если их убрать то всё ок): 
+- valuePerSecond
+- scannedLineItemsPerSecond
 
-avgValuePerScan = avgTimePerScan*valuePerSecond
+/// Выбросы ///
 
-lineItemVoidsPerPosition = lineItemVoids/totalScanned
+Выбросы детектируются на:
 
-withoutRegisPerPosition = scansWithoutRegistration/totalScanned
+- valuePerSecond
+- scannedLineItemsPerSecond
 
-quantityModsPerPosition = quantityModifications/totalScanned
+Для удаления выбросов на этих фичах заменяем все значения, больше 1 на средние этой фичи, после этого распределения на трейне и тесте совпадают
 
-lineItemVoidsPerTotal = lineItemVoids/grandTotal
+- lineItemVoidsPerPosition
 
-withoutRegistrationPerTotal = scansWithoutRegistration/grandTotal
+/// Логичность данных ///
 
-quantiModsPerTotal = quantityModifications/grandTotal
+В тесте имеются примеры с полями grandTotal и valuePerSecond = 0 (одни и теже), это странно
 
-lineItemVoidsPerTime = line/ItemVoids/totalScanTimeInSeconds
-
-withoutRegistrationPerTime = scansWithoutRegistration/totalScanTimeInSeconds
-
-quantiModesPerTime = quantityModifications/totalScanTimeInSeconds
-
-Детекция выбросов с помощью:
-
-IsolationTrees
-
+Проверка фичи lineItemVoidsPerPosition через формулу (lineItemVoids/scannedLineItemsPerSecond*totalScanTimeInSeconds) не совпадает с реальными значениями
