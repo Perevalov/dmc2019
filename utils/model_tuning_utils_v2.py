@@ -60,8 +60,11 @@ class paramsearch:
         return old
 
     def register_result(self, result, params):
-        self.results.add((result + np.random.randn() * np.random.randn() * np.random.randn() * np.random.randn() *
-                          np.random.randn() * np.random.randn() * np.random.randn() * 1e-10, params))
+        try:
+            self.results.add((result + np.random.randn() * np.random.randn() * np.random.randn() * np.random.randn() *
+                              np.random.randn() * np.random.randn() * np.random.randn() * 1e-10, params))
+        except TypeError:
+            pass
 
     def bestscore(self):
         return self.results[-self.best_n:-1][0]

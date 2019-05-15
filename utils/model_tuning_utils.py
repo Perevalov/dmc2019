@@ -179,7 +179,7 @@ class ModelTunerBestParams:
         ps = paramsearch(params)
         for prms in chain(ps.grid_search(['num_iterations', 'learning_rate']),
                           ps.grid_search(['max_depth', 'num_leaves']),
-                          ps.grid_search(['boosting'])):
+                          ps.grid_search(['boosting_type'])):
             res = self.crossvaltest_lgb(prms, X, y)
             ps.register_result(res, prms)
         return ps.bestparam(), ps.bestscore()
