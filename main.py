@@ -106,7 +106,7 @@ def prepare_data():
     for column in test.columns:
         test[column] = test[column].astype('float64')
 
-    pca = PCA(n_components=8)
+    pca = PCA(n_components=2)
     pca.fit(data.drop(["fraud"], axis=1).append(test, ignore_index=True))
 
     pca_ = pca.transform(data.drop(["fraud"], axis=1))
